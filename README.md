@@ -1,1 +1,1 @@
-### Backend for FinTech service
+### Backend for Mobile apps service
