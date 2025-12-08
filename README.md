@@ -1,6 +1,12 @@
 ### Backend for Mobile app service
 
 ### Run guide:
+```git clone https://github.com/lelik197/api-processor```
+#### Run with Docker
+
+```docker compose up --build```
+
+#### Run without Docker
 ```cargo run```
 
 Service available on http://localhost:3000/api/calc
