@@ -3,7 +3,7 @@ use crate::models::{calcRequest::CalcRequest, calcResponse::CalcResponse};
 use crate::services::{localCalc, compareService, sensitivityService};
 
 pub async fn process_calculation(Json(payload): Json<CalcRequest>) -> impl IntoResponse {
-    // Request routing logic depending on the operation
+    // request routing logic depending on the operation
     let (res, msg, srv_name) = match payload.operation.as_str() {
         "compare" => {
             let analysis = compareService::compare(payload.value_a, payload.value_b);
