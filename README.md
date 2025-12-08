@@ -1,23 +1,27 @@
 ### Backend for Mobile app service
 
 ### Run guide:
-``cargo run``
+```cargo run```
 
 Service available on http://localhost:3000/api/calc
 
-##### Postman guide
+### Postman guide
 Select POST on url: http://localhost:3000/api/calc
-Select headers:
+- Select headers:
 
-Key= Content-Type
+``Key= Content-Type``
 
-Value= application/json
+``Value= application/json``
 
-in Body select raw
+
+- in Body select raw
 
 demo JSON:
 
-``"value_a": 10.5,
-"value_b": 5.0,
-"operation": "add"
-}``
+```
+{
+  "value_a": 1234.21,
+  "value_b": -123,
+  "operation": "add"
+}
+```
