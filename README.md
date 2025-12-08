@@ -7,7 +7,7 @@ git clone https://github.com/lelik197/api-processor
 #### Run with Docker
 
 ```
-api-processor
+cd api-processor
 docker compose up --build
 ```
 
