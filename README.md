@@ -34,8 +34,10 @@ demo JSON:
 
 ```
 {
-  "value_a": 1234.21,
-  "value_b": -123,
-  "operation": "add"
+  "device_count": 15,
+  "device_price": 52990.99,
+  "servers_count": 2,
+  "server_price": 200000,
+  "operation": "calculate"
 }
 ```
