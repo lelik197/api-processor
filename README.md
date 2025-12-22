@@ -19,23 +19,43 @@ cargo run
 
 Service available on http://localhost:3000/api/calc
 
+Swagger available on http://localhost:3000/swagger-ui/
+
 ### Postman guide
 Select POST on url: http://localhost:3000/api/calc
 - Select headers:
 
-``Key= Content-Type``
+``Key = Content-Type``
 
-``Value= application/json``
+``Value = application/json``
 
 
-- in Body select raw
+- in Body select raw JSON
 
 demo JSON:
 
 ```
 {
-  "value_a": 1234.21,
-  "value_b": -123,
-  "operation": "add"
+  "device_count": 15,
+  "device_price": 52990.99,
+  "servers_count": 2,
+  "server_price": 200000,
+  "operation": "calculate",
+  "developer_count": 3,
+  "developer_salary": 123321,
+  "qa_count": 1,
+  "qa_salary": 70000
+
+}
+```
+
+
+```
+{
+  "device_count": 15,
+  "device_price": 52990.99,
+  "servers_count": 2,
+  "server_price": 200000,
+  "operation": "calculate"
 }
 ```
