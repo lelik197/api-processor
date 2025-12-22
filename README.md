@@ -38,6 +38,22 @@ demo JSON:
   "device_price": 52990.99,
   "servers_count": 2,
   "server_price": 200000,
+  "operation": "calculate",
+  "developer_count": 3,
+  "developer_salary": 123321,
+  "qa_count": 1,
+  "qa_salary": 70000
+
+}
+```
+
+
+```
+{
+  "device_count": 15,
+  "device_price": 52990.99,
+  "servers_count": 2,
+  "server_price": 200000,
   "operation": "calculate"
 }
 ```

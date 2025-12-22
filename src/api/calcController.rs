@@ -2,6 +2,14 @@ use axum::{Json, response::IntoResponse};
 use crate::models::{calcRequest::CalcRequest, calcResponse::CalcResponse};
 use crate::services::{localCalc, compareService, sensitivityService};
 
+#[utoipa::path(
+    post,
+    path = "/api/calc",
+    request_body = CalcRequest,
+    responses(
+        (status = 200, description = "Calculation result", body = CalcResponse)
+    )
+)]
 pub async fn process_calculation(Json(payload): Json<CalcRequest>) -> impl IntoResponse {
     // request routing logic depending on the operation
     let (res, msg, srv_name) = match payload.operation.as_str() {
@@ -29,10 +37,30 @@ pub async fn process_calculation(Json(payload): Json<CalcRequest>) -> impl IntoR
                 payload.servers_count,
                 payload.server_price,
             ) {
-                let val = localCalc::calculate(dc, dp, sc, sp, &payload.operation);
+                let dev_count = payload.developer_count.unwrap_or(0);
+                let dev_salary = payload.developer_salary.unwrap_or(0.0);
+                let qa_count = payload.qa_count.unwrap_or(0);
+                let qa_salary = payload.qa_salary.unwrap_or(0.0);
+
+                let val = localCalc::calculate(
+                    dc,
+                    dp,
+                    sc,
+                    sp,
+                    dev_count,
+                    dev_salary,
+                    qa_count,
+                    qa_salary,
+                    &payload.operation,
+                );
                 (Some(val), "Calculation success".to_string(), "LocalCalc")
             } else {
-                (None, "Missing required fields (device_count, device_price, servers_count, server_price)".to_string(), "LocalCalc")
+                (
+                    None,
+                    "Missing required fields (device_count, device_price, servers_count, server_price)"
+                        .to_string(),
+                    "LocalCalc",
+                )
             }
         }
     };
@@ -44,4 +72,48 @@ pub async fn process_calculation(Json(payload): Json<CalcRequest>) -> impl IntoR
     };
 
     Json(response)
+}
+
+#[utoipa::path(
+    get,
+    path = "/api/calc",
+    responses(
+        (status = 200, description = "Get service info", body = String)
+    )
+)]
+pub async fn get_calc_info() -> impl IntoResponse {
+    "Service Ready: API Processor v0.1.0".to_string()
+}
+
+#[utoipa::path(
+    put,
+    path = "/api/calc",
+    responses(
+        (status = 200, description = "Update configuration", body = String)
+    )
+)]
+pub async fn update_config() -> impl IntoResponse {
+    "Config updated (dummy)".to_string()
+}
+
+#[utoipa::path(
+    patch,
+    path = "/api/calc",
+    responses(
+        (status = 200, description = "Patch configuration", body = String)
+    )
+)]
+pub async fn patch_config() -> impl IntoResponse {
+    "Config patched (dummy)".to_string()
+}
+
+#[utoipa::path(
+    delete,
+    path = "/api/calc",
+    responses(
+        (status = 200, description = "Delete configuration", body = String)
+    )
+)]
+pub async fn delete_config() -> impl IntoResponse {
+    "Config deleted (dummy)".to_string()
 }
